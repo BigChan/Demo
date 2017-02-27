@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#box p{ width:40px;height:40px; float:left; background:#E42528;color:#FDFDFD; text-align:center;line-height:40px;margin-right:10px;opacity:0.8}
+#box p:hover{ cursor:pointer; opacity:1}
+</style>
+
+</head>
+
+<body>
+<input type="text" id="ipt1" placeholder="请输入数字"/>
+<button id="btn1">左侧入</button>
+<button id="btn2">右侧入</button>
+&nbsp;
+<button id="btn3">左侧出</button>
+<button id="btn4">右侧出</button>
+<div id="box">
+
+</div>
+<script type="text/javascript">
+var a=document.getElementById("box");
+var d=document.getElementById("btn1");
+var e=document.getElementById("btn2");
+var f=document.getElementById("btn3");
+var g=document.getElementById("btn4");
+function tianjia1(){
+var b=document.createElement("p");
+b.innerHTML=c;
+a.insertBefore(b,a.firstChild);}
+function one(){
+	c=document.getElementById("ipt1").value;
+	if( c!="")
+	tianjia1();
+	else 
+	alert("请输入数字");
+	}
+d.onclick=one;
+function tianjia2(){
+var b=document.createElement("p");
+b.innerHTML=c;
+a.appendChild(b);}
+function two(){
+	c=document.getElementById("ipt1").value;
+	if( c!="")
+	tianjia2();
+	else 
+	alert("请输入数字");
+	}
+e.onclick=two;
+function shanchu1(){
+	a.removeChild(a.firstChild);
+	}
+function shanchu2(){
+	a.removeChild(a.lastChild);
+	}
+f.onclick=shanchu1;
+g.onclick=shanchu2;
+</script>
+</body>
+</html>
