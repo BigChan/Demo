@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+#box1{width:200px;height:300px;background:#CCF; position:relative;left:-200px;top:100px;border-bottom-right-radius:10px; border-top-right-radius:10px;}
+#box2{width:40px;height:100px;background:#F00;text-align:center;border-bottom-right-radius:10px; border-top-right-radius:10px; color:#FFF; font-weight:900; position:absolute;left:200px;top:100px;}
+#a{padding-top:32px;}
+</style>
+
+</head>
+
+<body>
+<div id="box1">
+<div id="box2">
+<div id="a"><p>分</p>
+<p>享</p></div>
+</div>
+</div>
+<script type="text/javascript">
+var box2=document.getElementById("box2");
+var box1=document.getElementById("box1");
+var t=null;
+box1.onmouseover=move;
+	function move(){
+	clearInterval(t);
+	t=setInterval(function(){
+		if(box1.offsetLeft==0){clearInterval(t);}
+		else { speed=(0-box1.offsetLeft)/20;
+			box1.style.left=box1.offsetLeft+Math.ceil(speed)+"px";}
+		},30);
+	}	
+box1.onmouseout=move1;
+function move1(){
+	clearInterval(t);
+	t=setInterval(function(){
+		if(box1.offsetLeft==-200){clearInterval(t);}
+		else { speed=(-200-box1.offsetLeft)/20;
+			box1.style.left=box1.offsetLeft+Math.floor(speed)+"px";}
+		},30);
+	}
+	
+</script>
+</body>
+</html>
