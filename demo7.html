@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>简单表单验证</title>
+<style>
+div{
+	 width:500px;
+	 height:500px; 
+	 margin:0 auto
+  } 
+
+input { 
+	  height:30px; 
+	  width:250px; 
+	  border-radius:5px ; 
+	  border:#CFCFCF 1px solid 
+}
+
+#btn{ 
+	  height:30px; 
+	 cursor:pointer ; 
+	  color:#FDFDFD;
+	  background:#5271D0;
+	  border:#5271D0 1px solid;
+	  border-radius:5px;
+  }
+  
+.yanse{
+	color:#C1BFBF
+	}
+	
+.hongse{
+      color:#C32C2F;
+}
+
+.biankunag{
+     border:#C32C2F 1px solid;
+}
+.green{
+	color:#42BF73;
+}
+
+.greenBian{
+	border:#42BF73 1px solid
+	
+}
+</style>
+</head>
+
+<body>
+<div>
+<label for="name"><b>名称</b></label>
+<input id="name" type="text"    />
+<button id="btn"   type="submit">验证</button>
+<p id="tishi" class='yanse'>&nbsp;&nbsp;　　必填，长度为4~16字符</p>
+<div>
+<script>
+var tishi=document.getElementById("tishi");
+var btn=document.getElementById("btn");
+btn.onclick=function (){
+	var nameVal=document.getElementById("name").value;
+	var name=document.getElementById("name");
+	if(nameVal==''||nameVal==null)
+	{tishi.innerHTML="&nbsp;&nbsp;"+'　　姓名不能为空';
+	tishi.setAttribute('class','hongse');
+	name.setAttribute('class','biankunag');
+	   }
+	else if(chkstrlen(nameVal)<4||chkstrlen(nameVal)>16)
+	{tishi.innerHTML="&nbsp;&nbsp;"+'　　姓名长度应为4~16字符';
+	tishi.setAttribute('class','hongse');
+	name.setAttribute('class','biankunag');
+	}
+	else
+	{tishi.innerHTML="&nbsp;&nbsp;"+'　　名称格式正确';
+	tishi.setAttribute('class','green');
+	name.setAttribute('class','greenBian');
+	}
+	}
+	function chkstrlen(str)
+　　{
+　　　　var strlen = 0;
+　　　　for(var i = 0;i < str.length; i++)
+　　　　{
+　　　　　　if(str.charCodeAt(i) > 255) //如果是汉字，则字符串长度加2
+　　　　　　　　strlen += 2;
+　　　　　　else  
+　　　　　　　　strlen++;
+　　　　}
+　　　　return   strlen;
+　　}
+
+</script>
+</body>
+</html>
