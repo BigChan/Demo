@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>表单联动</title>
+<style type="text/css">
+	#zaixiao,#feizaixiao{
+		display:none;
+	}
+    
+	.wrap{  
+	    width:500px;
+		height:500px;
+		text-align:center;	
+		margin:0 auto;
+	    }
+			
+			
+	input,select{
+		  border-radius:5px;
+		  border:#CACACA 1px solid;
+		}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+      <input type="radio" id="in" name="person"/>
+      <label for="in">在校生</label>
+      <input type="radio" id="notin" name="person"/>
+      <label for="notin">非在校生</label>
+      <div id="zaixiao">
+          学校<select id="city">
+          <option>广东</option>
+          <option>北京</option>
+          <option>上海</option>
+          <option>山东</option>
+          </select>
+          <select id="school">
+          <option>广东工业大学</option>
+          <option>广州大学</option>
+          <option>中山大学</option>
+          </select>
+      </div>
+      <div id="feizaixiao">
+          <label for="danwei">就业单位</label><input  type="text" id="danwei"/>
+      </div>
+ </div>     
+	  <script>
+          var ins=document.getElementById("in"),
+		      notins=document.getElementById("notin"),
+		      zaixiao=document.getElementById("zaixiao"),
+		      feizaixiao=document.getElementById("feizaixiao"),
+		      city=document.getElementById("city"),
+		      school=document.getElementById("school"),
+		  //储存各城市大学
+		      xuexiao=[['广东工业大学','广州大学','中山大学'],
+		               ['清华大学','北京大学'],
+		                  ['同济大学','上海交通大学'],
+		                       ['山东大学','山东理工大学']];
+		  
+		  //定义事件句柄函数
+		  function addEventHandler(ele, event, hanlder) {
+         if (ele.addEventListener) {
+        ele.addEventListener(event, hanlder, false);
+          } else if (ele.attachEvent) {
+        ele.attachEvent("on"+event, hanlder);
+           } else  {
+        ele["on" + event] = hanlder;
+           }
+          }
+		  
+		  //联动到school列表
+		  function dayin(){		  
+					   school.options.length=xuexiao[city.selectedIndex].length;
+					  for(var j=0;j<xuexiao[city.selectedIndex].length;j++)
+					  {
+					  school.options[j].innerHTML=xuexiao[city.selectedIndex][j];
+					  }
+				 
+			  }
+			  
+		  //调用	  
+		  addEventHandler(city,'change',
+		  dayin);
+		  
+		  addEventHandler(ins,'focus',function (){
+			 zaixiao.style.display="block";
+			  feizaixiao.style.display="none";
+		  })
+		
+		  addEventHandler(notins,'focus',function (){
+			   feizaixiao.style.display="block";
+			  zaixiao.style.display="none";
+		  })
+      </script>
+</body>
+</html>
