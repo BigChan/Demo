@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>听话的小方块</title><script src="file:///E|/库/jquery/jquery-3.1.0.min.js"></script>
+<style type="text/css">
+table.gezi{ 
+      border-collapse:collapse;
+      border:2px #434343 solid;
+	  background:#FBFBFB;
+	  margin-top:5px;
+	  margin-left:35px;
+}
+
+table.gezi tr td{
+	  width:40px;
+	  height:40px;	 
+	  border:#DCDCDC 1px solid;
+	  cursor:pointer;
+}
+
+table.gezi tr td:active{
+	background:#B8B8B8;
+	}
+
+div.wrap{
+	  background:#FBFBFB;
+	  width:500px;
+	  height:500px;
+	  position:absolute;
+	  left:50%;
+	  top:50%;
+	  margin-left:-250px;
+	  margin-top:-250px;
+	  border:1px #434343 solid;
+
+}
+
+table.liehao{
+		  margin:0 auto ;
+
+	}
+
+table.liehao tr td{
+	  width:40px;
+	  text-align:center;
+	}
+
+table.hanghao{
+	float:left;
+	margin-left:10px;
+	}
+	
+table.hanghao tr td{
+	height:40px;
+	vertical-align:middle;
+     text-align:center;	 
+	}	
+table.gezi tr td div.top{
+	height:0px;
+	width:0;
+	border-color: transparent transparent #1316B0 transparent ;
+	border-width:5px;
+	border-style:solid;
+	}
+table.gezi tr td div.bottom{
+		height:40px;
+	background:#B42527;
+		border:0px #B42527 solid;
+	}
+
+</style>
+</head>
+
+<body>
+<p style="font-size:20px" >
+点击任意小格子</p>
+<p style="font-size:20px">红色方块自动走到对应的格子
+</p>
+<div class="wrap">
+<table class="liehao">
+    <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+   </tr>
+</table>
+<table class="hanghao">
+    <tr>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>10</td>
+    </tr>
+</table>
+<table class="gezi" id="gezi">
+    <tr>
+        <td ></td>
+        <td ></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td ></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td >
+           <div id="xiangzi">
+               <div class="bottom"></div>
+           </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+</div>
+<script>
+var  gezichild=$('#gezi td'),
+     xiangzi=$("#xiangzi");
+   gezichild.click(isclick);
+	
+	function isclick(){
+		   var  offTop=$(this).offset().top;
+		   var offLeft=$(this).offset().left;
+		   var top=xiangzi.offset().top;
+		   var left=xiangzi.offset().left;
+		   if(top>=offTop)
+		   {   
+		      gostraight()
+			  
+			   if(left>offLeft)
+			   {   setTimeout(function a(){
+				   
+				   if (left>offLeft+2)	
+			{b=--left;
+			xiangzi.offset({left:b});
+			setTimeout(a,5);
+			}
+				   },6*(top-offTop))
+				  
+				   }
+				
+				else {
+					setTimeout(function d(){
+				   
+				   if (left<offLeft+2)	
+			{c=++left;
+			xiangzi.offset({left:c});
+			setTimeout(d,5);
+			}
+				   },6*(top-offTop))
+					
+					
+					} 
+			}
+			   
+		 else if(top<offTop)
+		 {
+			 goback();
+			  if(left>offLeft)
+			   {   setTimeout(function f(){
+				   
+				   if (left>offLeft+2)	
+			{g=--left;
+			xiangzi.offset({left:g});
+			setTimeout(f,5);
+			}
+				   },6*(offTop-top))
+				  
+				   }
+				
+				else {
+					setTimeout(function h(){
+				   
+				   if (left<offLeft+2)	
+			{s=++left;
+			xiangzi.offset({left:s});
+			setTimeout(h,5);
+			}
+				   },6*(offTop-top))
+					
+					
+					} 
+			 
+			 }
+		
+		function gostraight(){		
+		  if (top>offTop+2)	
+			{a=--top;
+			xiangzi.offset({top:a});
+		 var T1= setTimeout(gostraight,5);
+			}
+		}
+		
+		function goback(){
+			 if (top<offTop+2)	
+			{e=++top;
+			xiangzi.offset({top:e});
+		 var T2= setTimeout(goback,5);
+			}
+			
+			}
+		
+		
+	}
+</script>
+</body>
+</html>
