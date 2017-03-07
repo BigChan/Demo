@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>UI组件之浮出层</title>
+ <style type="text/css">
+     *{padding:0; margin:0}
+     div#fuchuceng{
+		 position:absolute;
+		 height:300px;
+		 width:500px;
+		 background:#BCBCBC;
+		 left:50%;
+		 top:50%;
+		 margin-left:-250px;
+		 margin-top:-150px;
+		 display:none;
+		 }
+	  div#fuchuceng p{
+		  padding-left:20px;
+           background:#3B3B3B;
+		  height:50px;
+		  line-height:50px;
+		  color:#EDEDED;
+		  }
+		  
+	    #bt1,#bt2{
+			  height:50px;
+			  width:100px;
+			  background:#3B3B3B;
+			    color:#EDEDED;
+				height:50px;
+				cursor:pointer;
+				font-size:24px
+			}
+			
+	   #bt1{
+		   position:absolute;
+		   right:140px;
+		   top:240px;
+		   }
+		#bt2{
+			 position:absolute;
+		   right:20px;
+		   top:240px;
+			}
+	    #zhanxian{
+			  background:#3B3B3B;
+			 
+		  height:50px;
+		  width:100%;
+		  line-height:50px;
+		  color:#EDEDED;
+		   font-size:24px;
+			}
+			#toumingceng{
+				background:#7C3133;
+				
+				}
+	
+</style>
+
+</head>
+
+<body>
+<div id="toumingceng">
+<button id="zhanxian">展现</button>
+</div>
+
+<div id="fuchuceng">
+   <p>这是一个浮出层</p>
+   <button id="bt1">确定</button>
+   <button id="bt2">取消</button>
+</div>
+<script>
+  var a=window.innerHeight;
+  var b=window.innerWidth;
+  var zhanxian=document.getElementById("zhanxian");
+  var fuchuceng=document.getElementById("fuchuceng");
+  var bt1=document.getElementById("bt1");
+  var bt2=document.getElementById("bt2");
+  var toumingceng=document.getElementById("toumingceng");
+ 
+   //添加透明背景
+   toumingceng.style.height=a+'px';
+ 
+  zhanxian.onclick=fuchu;
+  toumingceng.onclick=xiaoshi;
+  bt1.onclick=xiaoshi;
+  bt2.onclick=xiaoshi;
+  
+  function fuchu(){
+	  fuchuceng.style.display="block";
+	  document.getElementById("toumingceng").style.opacity=0.5;
+	  //禁止事件冒泡
+	  event.stopPropagation()
+	  }
+  
+  function xiaoshi(){
+	  if( fuchuceng.style.display==="block")
+	  {fuchuceng.style.display="none";
+	  toumingceng.style.opacity=1;
+	  }
+	  }
+</script>
+</body>
+</html>
