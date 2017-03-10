@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>UI组件之排序表格</title>
+<style type="text/css">
+table{
+	 border-collapse:collapse;
+	 margin:0 auto;
+}
+
+table tr td{
+	border:2px #ADADAD solid; 
+	text-align:center;
+	vertical-align:middle;
+	width:100px;
+	height:40px;
+	}
+	
+.head td{
+	color:#FCFCFC;
+	background:#6C6C6C;
+	position:relative;
+	font-weight:bold;
+	}
+	
+.top{
+	width:0;
+	height:0;
+	border-width:7px;
+	border-style:solid;
+	border-color:transparent  transparent #F8F8F8 transparent;
+	position:absolute;
+	top:5px;
+	right:9px;
+	cursor:pointer;
+	}
+	
+.bottom{
+	width:0;
+	height:0;
+	border-width:7px;
+	border-style:solid;
+	border-color:#F8F8F8  transparent transparent transparent;
+	position:absolute;
+	top:25px;
+	right:9px;
+	cursor:pointer;
+	}
+
+.top:active{
+    border-color:transparent  transparent #B5B5B5 transparent;
+	}
+	
+.bottom:active{
+	border-color:#B5B5B5  transparent transparent transparent;
+	}
+</style>
+</head>
+
+<body>
+<table id="tab">
+  <tr class="head">
+  <td>姓名</td>
+  <td >语文
+  <div class="top" id="1"></div>
+  <div class="1 bottom " ></div>
+  </td>
+  <td >数学
+  <div class="top" id="2"></div>
+  <div class="2 bottom"></div>
+  </td>
+  <td >英语
+  <div class="top" id="3"></div>
+  <div class="3 bottom"></div>
+  </td>
+  <td >总分
+  <div class="top" id="4"></div>
+  <div class="4 bottom"></div>
+  </td>
+  </tr>
+    <tr>
+  <td>小明</td>
+  <td>80</td>
+  <td>90</td>
+  <td>70</td>
+  <td>240</td>
+  </tr>
+  <tr>
+  <td>小红</td>
+  <td>90</td>
+  <td>60</td>
+  <td>90</td>
+  <td>240</td>
+  </tr>
+  <tr>
+  <td>小亮</td>
+  <td>60</td>
+  <td>100</td>
+  <td>70</td>
+  <td>230</td>
+  </tr>
+</table>
+
+<script>
+window.onload=function(){
+var btn_top=document.getElementsByClassName("top");
+var btn_bot=document.getElementsByClassName('bottom');
+var tableChild=document.getElementsByTagName("tr");
+
+function btn_top_click(){
+	for(var i=0;i<4;i++)
+	{
+		btn_top[i].onclick=shengxu;
+		}
+	function shengxu()
+	{    
+	    var id=this.id;
+		for(var j=0;j<tableChild.length-2;j++)
+		{
+			for(var k=j+2;k<tableChild.length;k++)
+		   {
+           if(parseInt(tableChild[j+1].children[id].innerHTML)>
+		      parseInt(tableChild[k].children[id].innerHTML))
+		      {
+				  var temp=tableChild[j+1].innerHTML;
+		           tableChild[j+1].innerHTML=tableChild[k].innerHTML;
+				  tableChild[k].innerHTML=temp;
+				  }
+			  
+		   }
+		}	
+	}
+}
+
+
+function btn_bot_click(){
+	for(var i=0;i<4;i++)
+	{
+		btn_bot[i].onclick=jiangxu;
+		}
+	function jiangxu()
+	{    
+	    var  id=parseInt(this.className);
+		for(var j=0;j<tableChild.length-2;j++)
+		{
+			for(var k=j+2;k<tableChild.length;k++)
+		   {
+           if(parseInt(tableChild[j+1].children[id].innerHTML)<
+		      parseInt(tableChild[k].children[id].innerHTML))
+		      {
+				  var temp=tableChild[j+1].innerHTML;
+		           tableChild[j+1].innerHTML=tableChild[k].innerHTML;
+				  tableChild[k].innerHTML=temp;
+				  }
+			  
+		   }
+		}	
+	}
+}
+
+
+
+btn_top_click();
+btn_bot_click();
+
+}
+</script>
+</body>
+</html>
